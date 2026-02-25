@@ -1,17 +1,20 @@
 {
   "name": "Python 3",
-  "image": "mcr.microsoft.com/devcontainers/python:3.13",
-  "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {}
-  },
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspaces/copilot-code-review",
   "forwardPorts": [8000],
-  "postCreateCommand": "bash ./.devcontainer/postCreate.sh",
+  "postCreateCommand": "pip install -r requirements.txt",
+  "remoteEnv": {
+    "MONGODB_URI": "mongodb://mongo:27017/"
+  },
   "customizations": {
     "vscode": {
       "extensions": [
         "GitHub.copilot",
         "ms-python.python",
-        "ms-python.debugpy"      ]
+        "ms-python.debugpy"
+      ]
     }
   }
 }
